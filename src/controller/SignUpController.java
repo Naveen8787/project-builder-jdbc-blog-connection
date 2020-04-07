@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import utility.ConnectionManager;
 
 
@@ -31,18 +32,17 @@ public class SignUpController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Sign up Controller");
-		// Fill your code here
-		ConnectionManager cm = new ConnectionManager();
 		Connection con = null;
-		try {
-			con = cm.getConnection();
-		} 
-		catch (Exception e) {
-			e.printStackTrace();
-		}
+			try {
+				con = ConnectionManager.getConnection();
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		
 		if(con!=null)
-			System.out.println("Connection Established");
+			System.out.println("Connection established");
 		else
 			System.out.println("Check your Connection");
 		
